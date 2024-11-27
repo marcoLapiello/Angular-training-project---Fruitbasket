@@ -1,46 +1,6 @@
 <div class="fruitlist_content">
-    @for(fruit of fruitlist; track fruit.name; let index = $index){
-        <section class="singleFruitBox">
-            <div>
-                <img src="./assets/img/fruits/{{fruit.img}}" alt="" srcset="">
-            </div>
-            <div>
-                <h2><app-single-fruit [fruitnumber]="index + 1"></app-single-fruit>{{fruit.name}}</h2>
-                <div>
-                    <p><b>Bewertung:</b></p>
-                    <div>
-
-                        @for (amount of [1,2,3,4,5]; track fruitlist) {
-
-                            @if(fruit.stars >= amount){
-                                <img src="./assets/img/stars/star.svg" alt="" srcset="">
-                            } @else if(fruit.stars >= amount - 0.5) {
-                                <img src="./assets/img/stars/star-half.svg" alt="" srcset="">
-                            } @else {
-                                <img src="./assets/img/stars/star-empty.svg" alt="" srcset="">
-                            }
-                        }
-
-                        
-                    
-                        <p [ngClass]="{'fontColorBad': fruit.stars < 3, 'fontColorGood': fruit.stars > 3}">({{fruit.stars}})</p>
-                    </div>
-                </div>
-                <div><b>Art:</b><br>{{fruit.genus}}</div>
-                <div><b>Beschreibung:</b><br>{{fruit.description}}</div>
-                <div>
-                    <div>
-                        @for (review of fruit.reviews; track $index) {
-                            <div><b>{{review.name}}:</b><br>{{review.text}}</div>
-                        } @empty {
-                            No comments
-                        }
-                            
-                    </div>
-                    <div><input type="text"><button><img src="./assets/img/arrow-35-32.png" alt="" srcset=""></button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    @for(singleFruit of fruitlist; track singleFruit.name; let index = $index){
+        
+        <app-single-fruit [fruit]="singleFruit"></app-single-fruit>
     }
 </div>
